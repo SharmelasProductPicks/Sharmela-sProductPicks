@@ -54,7 +54,7 @@
       text-align: center;
     }
 
-    .card img {width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius);}
+    .card img {width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius);} 
     .card h3 {font-size: 1.125rem; margin: 0.75rem 0 0.5rem;}
     .card p {font-size: 0.9rem; margin-bottom: 1rem; color: #475569;}
 
@@ -70,10 +70,43 @@
     .btn:hover {background: #1e3a8a;}
 
     /* Guide article */
-    article {background: var(--card-bg); padding: 1rem 1.25rem; border-radius: var(--radius); box-shadow: var(--shadow);}
-    article:not(:last-child) {margin-bottom: 1.5rem;}
-    article h3 {font-size: 1.25rem; margin-bottom: 0.5rem;}
+    article {background: var(--card-bg); padding: 1rem 1.25rem; border-radius: var(--radius); box-shadow: var(--shadow);} 
+    article:not(:last-child) {margin-bottom: 1.5rem;} 
+    article h3 {font-size: 1.25rem; margin-bottom: 0.5rem;} 
     article a {color: var(--primary); text-decoration: underline;}
+
+    /* Thank‑you overlay */
+    #thankyou-modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.65);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+    }
+    #thankyou-modal.active {display: flex;}
+    #thankyou-box {
+      background: var(--card-bg);
+      padding: 2rem 2.5rem;
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+      max-width: 320px;
+      animation: pop 0.4s ease-out forwards;
+    }
+    #thankyou-box h4 {font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary);} 
+    #thankyou-box p {font-size: 0.95rem; margin-bottom: 0.75rem;} 
+    #close-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.4rem 1.1rem;
+      cursor: pointer;
+    }
+    @keyframes pop {from {transform: scale(0.85); opacity: 0;} to {transform: scale(1); opacity: 1;}}
   </style>
 </head>
 <body>
@@ -134,6 +167,31 @@
   <footer>
     <p>&copy; 2025 Sharmela. All rights reserved.</p>
   </footer>
+
+  <!-- Thank-you modal -->
+  <div id="thankyou-modal" aria-hidden="true">
+    <div id="thankyou-box">
+      <h4>Thank you!</h4>
+      <p>Your support helps us keep the reviews coming. The product page opened in a new tab.</p>
+      <button id="close-btn">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // show thank-you modal on any outbound link click
+    document.querySelectorAll('.btn').forEach(link => {
+      link.addEventListener('click', () => {
+        const modal = document.getElementById('thankyou-modal');
+        modal.classList.add('active');
+        // auto-hide after 4s
+        setTimeout(() => modal.classList.remove('active'), 4000);
+      });
+    });
+    document.getElementById('close-btn').addEventListener('click', () => {
+      document.getElementById('thankyou-modal').classList.remove('active');
+    });
+  </script>
 </body>
 </html>
+
 Add index.html
