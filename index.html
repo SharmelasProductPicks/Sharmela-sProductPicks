@@ -178,13 +178,10 @@
   </div>
 
   <script>
-    // show thank-you modal on any outbound link click
+    // Persist thank-you modal until user closes it
     document.querySelectorAll('.btn').forEach(link => {
       link.addEventListener('click', () => {
-        const modal = document.getElementById('thankyou-modal');
-        modal.classList.add('active');
-        // auto-hide after 4s
-        setTimeout(() => modal.classList.remove('active'), 4000);
+        document.getElementById('thankyou-modal').classList.add('active');
       });
     });
     document.getElementById('close-btn').addEventListener('click', () => {
