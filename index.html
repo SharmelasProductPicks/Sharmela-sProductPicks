@@ -4,17 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sharmela's Product Picks</title>
+
   <style>
     :root {
       --primary: #2563eb;
-      --text: #1f2937;
-      --bg: #f8fafc;
+      --text:    #1f2937;
+      --bg:      #f8fafc;
       --card-bg: #ffffff;
-      --radius: 1.25rem;
-      --shadow: 0 6px 12px rgba(0, 0, 0, 0.06);
+      --radius:  1.25rem;
+      --shadow:  0 6px 12px rgba(0, 0, 0, 0.06);
     }
 
-    * {box-sizing: border-box; margin: 0; padding: 0;}
+    * { box-sizing:border-box; margin:0; padding:0; }
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       background: var(--bg);
@@ -23,90 +24,65 @@
       padding: 2rem;
     }
 
-    header, footer {text-align: center; margin-bottom: 2rem;}
-    header h1 {font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;}
-    header p {font-size: 0.875rem; color: #475569;}
+    header, footer { text-align:center; margin-bottom:2rem; }
+    header h1      { font-size:2.5rem; font-weight:700; margin-bottom:0.5rem; }
+    header p       { font-size:0.875rem; color:#475569; }
 
     main {
-      display: grid;
-      gap: 3rem;
-      max-width: 1000px;
-      margin: 0 auto;
+      display:grid;
+      gap:3rem;
+      max-width:1000px;
+      margin:0 auto;
     }
 
-    section h2 {font-size: 1.75rem; margin-bottom: 1rem; border-left: 4px solid var(--primary); padding-left: 0.5rem;}
+    section h2 {
+      font-size:1.75rem;
+      margin-bottom:1rem;
+      border-left:4px solid var(--primary);
+      padding-left:0.5rem;
+    }
 
-    /* Product grid */
+    /* Product cards */
     .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+      gap:1.5rem;
     }
-
     .card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 1rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      background:var(--card-bg);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      padding:1rem;
+      text-align:center;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
     }
-
-    .card img {width: 100%; height: 180px; object-fit: cover; border-radius: var(--radius);} 
-    .card h3 {font-size: 1.125rem; margin: 0.75rem 0 0.5rem;}
-    .card p {font-size: 0.9rem; margin-bottom: 1rem; color: #475569;}
+    .card img  { width:100%; height:180px; object-fit:cover; border-radius:var(--radius); }
+    .card h3   { font-size:1.125rem; margin:0.75rem 0 0.5rem; }
+    .card p    { font-size:0.9rem; color:#475569; margin-bottom:1rem; }
 
     .btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 9999px;
-      text-decoration: none;
-      transition: background 0.2s ease;
+      display:inline-block;
+      background:var(--primary);
+      color:#fff;
+      padding:0.5rem 1rem;
+      border-radius:9999px;
+      text-decoration:none;
+      transition:background 0.2s ease;
     }
-    .btn:hover {background: #1e3a8a;}
+    .btn:hover { background:#1e3a8a; }
 
-    /* Guide article */
-    article {background: var(--card-bg); padding: 1rem 1.25rem; border-radius: var(--radius); box-shadow: var(--shadow);} 
-    article:not(:last-child) {margin-bottom: 1.5rem;} 
-    article h3 {font-size: 1.25rem; margin-bottom: 0.5rem;} 
-    article a {color: var(--primary); text-decoration: underline;}
-
-    /* Thank‑you overlay */
-    #thankyou-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.65);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
+    /* Guide articles */
+    article {
+      background:var(--card-bg);
+      padding:1rem 1.25rem;
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
     }
-    #thankyou-modal.active {display: flex;}
-    #thankyou-box {
-      background: var(--card-bg);
-      padding: 2rem 2.5rem;
-      border-radius: var(--radius);
-      text-align: center;
-      box-shadow: var(--shadow);
-      max-width: 320px;
-      animation: pop 0.4s ease-out forwards;
-    }
-    #thankyou-box h4 {font-size: 1.25rem; margin-bottom: 0.5rem; color: var(--primary);} 
-    #thankyou-box p {font-size: 0.95rem; margin-bottom: 0.75rem;} 
-    #close-btn {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      border: none;
-      border-radius: 9999px;
-      padding: 0.4rem 1.1rem;
-      cursor: pointer;
-    }
-    @keyframes pop {from {transform: scale(0.85); opacity: 0;} to {transform: scale(1); opacity: 1;}}
+    article:not(:last-child) { margin-bottom:1.5rem; }
+    article h3 { font-size:1.25rem; margin-bottom:0.5rem; }
+    article a  { color:var(--primary); text-decoration:underline; }
   </style>
 </head>
 <body>
@@ -116,76 +92,74 @@
   </header>
 
   <main>
-    <!-- Featured Products Section -->
+    <!-- Featured products -->
     <section id="featured">
       <h2>Featured Deals</h2>
       <div class="grid">
         <div class="card">
-          <img src="https://via.placeholder.com/300x180.png?text=Product+One" alt="Product One" />
+          <img src="https://via.placeholder.com/300x180.png?text=Product+One" alt="Product One">
           <h3>Product One</h3>
           <p>A quick sentence about why this item is awesome.</p>
-          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT1?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT1?tag=YOURTAG-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
         <div class="card">
-          <img src="https://via.placeholder.com/300x180.png?text=Product+Two" alt="Product Two" />
+          <img src="https://via.placeholder.com/300x180.png?text=Product+Two" alt="Product Two">
           <h3>Product Two</h3>
           <p>Highlight the key benefit or feature here.</p>
-          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT2?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT2?tag=YOURTAG-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
         <div class="card">
-          <img src="https://via.placeholder.com/300x180.png?text=Product+Three" alt="Product Three" />
+          <img src="https://via.placeholder.com/300x180.png?text=Product+Three" alt="Product Three">
           <h3>Product Three</h3>
           <p>Another catchy line that sparks curiosity.</p>
-          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT3?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT3?tag=YOURTAG-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
         <div class="card">
-          <img src="https://via.placeholder.com/300x180.png?text=Product+Four" alt="Product Four" />
+          <img src="https://via.placeholder.com/300x180.png?text=Product+Four" alt="Product Four">
           <h3>Product Four</h3>
           <p>A brief hook explaining the standout advantage.</p>
-          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT4?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">View on Amazon</a>
+          <a class="btn" href="https://www.amazon.ca/dp/PRODUCT4?tag=YOURTAG-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
       </div>
     </section>
 
-    <!-- Buying Guides Section -->
+    <!-- Articles -->
     <section id="guides">
-      <h2>Buying Guides & Articles</h2>
+      <h2>Buying Guides &amp; Articles</h2>
+
       <article>
         <h3>How to Choose the Perfect Mechanical Keyboard</h3>
-        <p>If you’re looking for a satisfying typing experience, you’ll love the <a href="https://www.amazon.ca/dp/MECHKEY?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">Keychron K6 Wireless</a>. We break down switch types, layouts, and firmware tips.</p>
+        <p>If you’re looking for a satisfying typing experience, you’ll love the
+           <a href="https://www.amazon.ca/dp/MECHKEY?tag=YOURTAG-20" target="_blank" rel="noopener">Keychron K6 Wireless</a>.
+           We break down switch types, layouts, and firmware tips.</p>
       </article>
+
       <article>
-        <h3>Top 5 Budget Action Cameras in 2025</h3>
-        <p>Want GoPro-level footage without the price tag? Check out the <a href="https://www.amazon.ca/dp/BUDGETCAM?tag=YOURTAG-20" target="_blank" rel="noopener noreferrer">Akaso Brave 8</a> plus four other wallet-friendly options.</p>
+        <h3>Top 5 Budget Action Cameras in 2025</h3>
+        <p>Want GoPro‑level footage without the price tag? Check out the
+           <a href="https://www.amazon.ca/dp/BUDGETCAM?tag=YOURTAG-20" target="_blank" rel="noopener">Akaso Brave 8</a> plus four other wallet‑friendly options.</p>
       </article>
     </section>
   </main>
 
   <footer>
-    <p>&copy; 2025 Sharmela. All rights reserved.</p>
+    <p>&copy; 2025 Sharmela. All rights reserved.</p>
   </footer>
 
-  <!-- Thank-you modal -->
-  <div id="thankyou-modal" aria-hidden="true">
-    <div id="thankyou-box">
-      <h4>Thank you!</h4>
-      <p>Your support helps us keep the reviews coming. The product page opened in a new tab.</p>
-      <button id="close-btn">Close</button>
-    </div>
-  </div>
-
+  <!-- Redirect script: Amazon opens in new tab, current tab → thank‑you page -->
   <script>
-    // Persist thank-you modal until user closes it
     document.querySelectorAll('.btn').forEach(link => {
-      link.addEventListener('click', () => {
-        document.getElementById('thankyou-modal').classList.add('active');
+      link.addEventListener('click', event => {
+        // open Amazon link in new tab
+        window.open(link.href, '_blank', 'noopener');
+        // navigate current tab to thank‑you page
+        window.location.href = 'thankyou.html';
+        // prevent the browser from following link in current tab
+        event.preventDefault();
       });
-    });
-    document.getElementById('close-btn').addEventListener('click', () => {
-      document.getElementById('thankyou-modal').classList.remove('active');
     });
   </script>
 </body>
