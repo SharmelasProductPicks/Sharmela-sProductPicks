@@ -33,9 +33,21 @@
       margin-top:-60px;   /* pull text closer to the logo */
     }
 
-    /* scroll cue */
-    #scroll-down{bottom:40px;z-index:2;position:absolute;bottom:40px;left:50%;translate:-50% 0;cursor:pointer;width:32px;height:32px;
-                 animation:bounce 2s infinite;fill:#fff;opacity:.9;}
+    /* scroll cue –‑ larger & moved up */
+    #scroll-down{
+      position:absolute;
+      bottom:120px;        /* was 40px → now sits nearer the text  */
+      left:50%;
+      translate:-50% 0;
+      width:48px;          /* was 32px → bigger icon               */
+      height:48px;
+      cursor:pointer;
+      animation:bounce 2s infinite;
+      fill:#fff;
+      opacity:.9;
+      z-index:2;
+    }
+
     
     /* Snap the hero into side‑by‑side mode on screens ≥ 900 px */
     @media(min-width:900px){
