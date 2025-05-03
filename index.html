@@ -7,202 +7,161 @@
 
   <style>
     :root {
-      --primary: #2563eb;
-      --text:    #1f2937;
-      --bg:      #f8fafc;
-      --card-bg: #ffffff;
-      --radius:  1.25rem;
-      --shadow:  0 6px 12px rgba(0, 0, 0, 0.06);
+      --primary:#2563eb;
+      --text:#1f2937;
+      --bg:#f8fafc;
+      --card-bg:#ffffff;
+      --radius:1.25rem;
+      --shadow:0 6px 12px rgba(0,0,0,.06);
     }
 
-    * { box-sizing:border-box; margin:0; padding:0; }
-    body {
-      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-      padding: 2rem;
-    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--text);}
 
-    header, footer { text-align:center; margin-bottom:2rem; }
-    header h1      { font-size:2.5rem; font-weight:700; margin-bottom:0.5rem; }
-    header p       { font-size:0.875rem; color:#475569; }
+    /* --- HERO --- */
+    #hero{
+      min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+      text-align:center;background:linear-gradient(135deg,#1e40af 0%,#2563eb 40%,#60a5fa 100%);
+      color:#fff;position:relative;overflow:hidden;padding:2rem;
+    }
+    #hero img{width:110px;height:110px;margin-bottom:1.25rem;opacity:0;animation:pop .9s .1s forwards;}
+    #hero h1{font-size:2.75rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.5px;opacity:0;animation:slideFade 1.1s .3s forwards;}
+    #hero p{font-size:1.125rem;max-width:520px;margin-inline:auto 2rem;opacity:0;animation:slideFade 1.1s .45s forwards;}
 
-    main {
-      display:grid;
-      gap:3rem;
-      max-width:1000px;
-      margin:0 auto;
-    }
+    /* scroll cue */
+    #scroll-down{position:absolute;bottom:40px;left:50%;translate:-50% 0;cursor:pointer;width:32px;height:32px;
+                 animation:bounce 2s infinite;fill:#fff;opacity:.9;}
 
-    section h2 {
-      font-size:1.75rem;
-      margin-bottom:1rem;
-      border-left:4px solid var(--primary);
-      padding-left:0.5rem;
-    }
+    /* --- MAIN / CARDS --- */
+    main{padding:2rem;max-width:1000px;margin-inline:auto;}
+    section h2{font-size:1.75rem;margin-bottom:1rem;border-left:4px solid var(--primary);padding-left:.5rem;}
 
-    /* Product cards */
-    .grid {
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-      gap:1.5rem;
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;}
+    .card{
+      background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow);
+      padding:1rem;text-align:center;display:flex;flex-direction:column;align-items:center;
     }
-    .card {
-      background:var(--card-bg);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      padding:1rem;
-      text-align:center;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-    }
-    .card img  { width:100%; height:180px; object-fit:cover; border-radius:var(--radius); }
-    .card h3   { font-size:1.125rem; margin:0.75rem 0 0.5rem; }
-    .card p    { font-size:0.9rem; color:#475569; margin-bottom:1rem; }
+    .card img{width:100%;height:180px;object-fit:cover;border-radius:var(--radius);}
+    .card h3{font-size:1.125rem;margin:.75rem 0 .5rem;}
+    .card p{font-size:.9rem;color:#475569;margin-bottom:1rem;}
 
-    .btn {
-      display:inline-block;
-      background:var(--primary);
-      color:#fff;
-      padding:0.5rem 1rem;
-      border-radius:9999px;
-      text-decoration:none;
-      transition:background 0.2s ease;
-    }
-    .btn:hover { background:#1e3a8a; }
+    .btn{display:inline-block;background:var(--primary);color:#fff;padding:.5rem 1rem;border-radius:9999px;text-decoration:none;transition:background .2s;}
+    .btn:hover{background:#1e3a8a;}
 
-    /* Guide articles */
-    article {
-      background:var(--card-bg);
-      padding:1rem 1.25rem;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-    }
-    article:not(:last-child) { margin-bottom:1.5rem; }
-    article h3 { font-size:1.25rem; margin-bottom:0.5rem; }
-    article a  { color:var(--primary); text-decoration:underline; }
+    /* --- ARTICLES --- */
+    article{background:var(--card-bg);padding:1rem 1.25rem;border-radius:var(--radius);box-shadow:var(--shadow);}
+    article:not(:last-child){margin-bottom:1.5rem;}
+    article h3{font-size:1.25rem;margin-bottom:.5rem;}
+    article a{color:var(--primary);text-decoration:underline;}
+
+    footer{margin-block:3rem 1.5rem;text-align:center;font-size:.875rem;color:#475569;}
+
+    /* --- ANIMATIONS --- */
+    @keyframes pop{from{scale:.75;opacity:0;}to{scale:1;opacity:1;}}
+    @keyframes slideFade{from{translate:0 25px;opacity:0;}to{translate:0 0;opacity:1;}}
+    @keyframes bounce{0%,100%{translate:-50% 0;}50%{translate:-50% 6px;}}
   </style>
 </head>
 <body>
-  <header>
-    <h1>Sharmela's Product Picks</h1>
-  </header>
 
+  <!-- HERO / WELCOME -->
+  <section id="hero">
+    <img src="logo.png" alt="Sharmela's Picks logo">
+    <h1>Welcome to Sharmela's Picks</h1>
+    <p>Curated Amazon tech &amp; lifestyle deals—hand‑picked so you shop smarter and save bigger.</p>
+    <!-- chevron icon -->
+    <svg id="scroll-down" viewBox="0 0 24 24" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'});">
+      <path d="M12 16.5 4.5 9l1.42-1.42L12 13.66l6.08-6.08L19.5 9z"/>
+    </svg>
+  </section>
+
+  <!-- MAIN CONTENT -->
   <main>
-    <!-- Featured products -->
     <section id="featured">
       <h2>Featured Deals</h2>
       <div class="grid">
         <!-- TP‑Link Tapo Indoor Cam -->
         <div class="card">
-          <img src="https://m.media-amazon.com/images/I/61diChCuq+L._AC_SL500_.jpg"
-               alt="TP-Link Tapo C200 Indoor Security Camera">
-          <h3>TP‑Link Tapo C200 2K Indoor Cam</h3>
-          <p>Pan/Tilt • Night Vision • Motion‑Tracking—easy DIY home security.</p>
-          <a class="btn"
-             href="https://www.amazon.ca/TP-Link-Tapo-Wireless-Security-C200/dp/B09Y8TLP25?th=1&linkCode=ll1&tag=sharmelapicks-20&linkId=a520156e57eb71978e6f9ddfd6a2e75b&language=en_CA&ref_=as_li_ss_tl"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
-        </div>
-        
-        <!-- Echo Dot (5th Gen) -->
-        <div class="card">
-          <img src="https://m.media-amazon.com/images/I/71Tm9ZWZ5LL._AC_SL500_.jpg"
-               alt="Echo Dot (5th Gen) Smart Speaker">
-          <h3>Echo Dot 5th Gen – Alexa Smart Speaker</h3>
-          <p>Room‑filling sound, temperature sensor &amp; Alexa voice control.</p>
-          <a class="btn"
-             href="https://www.amazon.ca/Echo-Dot-5th-Gen/dp/B09B8V1LZ3?th=1&linkCode=ll1&tag=sharmelapicks-20&linkId=16e73607d07ad1c9b5392933eef25289&language=en_CA&ref_=as_li_ss_tl"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
+          <img src="https://m.media-amazon.com/images/I/61diChCuq+L._AC_SL500_.jpg" alt="TP-Link Tapo C200 Indoor Security Camera">
+          <h3>TP‑Link Tapo C200 2K Indoor Cam</h3>
+          <p>Pan/Tilt • Night Vision • Motion‑Tracking—easy DIY security.</p>
+          <a class="btn" href="https://www.amazon.ca/TP-Link-Tapo-Wireless-Security-C200/dp/B09Y8TLP25?tag=sharmelapicks-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
-
-                <!-- SanDisk Ultra Flair 128 GB USB 3.0 -->
+        <!-- Echo Dot -->
         <div class="card">
-          <img src="https://m.media-amazon.com/images/I/51q1BJpgGkL._AC_SL700_.jpg"
-               alt="SanDisk Ultra Flair 128 GB USB 3.0 Flash Drive">
-          <h3>SanDisk Ultra Flair 128 GB USB 3.0</h3>
-          <p>Up to 150 MB/s read—sleek metal build for fast, portable storage.</p>
-          <a class="btn"
-             href="https://www.amazon.ca/SanDisk-Ultra-Flair-Performance-SDCZ73-128G-G46/dp/B015CH1PJU?th=1&linkCode=ll1&tag=sharmelapicks-20&linkId=5213dae13c30f237ce114fd920376ecf&language=en_CA&ref_=as_li_ss_tl"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
+          <img style="margin-top:15px" src="https://m.media-amazon.com/images/I/71Tm9ZWZ5LL._AC_SL500_.jpg" alt="Echo Dot 5th Gen Smart Speaker">
+          <h3>Echo Dot 5th Gen – Alexa Speaker</h3>
+          <p>Room‑filling sound, temp sensor &amp; Alexa voice control.</p>
+          <a class="btn" href="https://www.amazon.ca/Echo-Dot-5th-Gen/dp/B09B8V1LZ3?tag=sharmelapicks-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
-
-                <!-- HP 63 Tri‑Color Ink Cartridge -->
+        <!-- SanDisk USB -->
         <div class="card">
-          <img src="https://m.media-amazon.com/images/I/71ZQUvb4+NL._AC_SL550_.jpg"
-               alt="HP 63 Tri‑Color Original Ink Cartridge">
+          <img src="https://m.media-amazon.com/images/I/51q1BJpgGkL._AC_SL700_.jpg" alt="SanDisk Ultra Flair 128 GB USB 3.0 Drive">
+          <h3>SanDisk Ultra Flair 128 GB USB 3.0</h3>
+          <p>Up to 150 MB/s read—sleek metal body for fast backups.</p>
+          <a class="btn" href="https://www.amazon.ca/SanDisk-Ultra-Flair-Performance-SDCZ73-128G-G46/dp/B015CH1PJU?tag=sharmelapicks-20" target="_blank" rel="noopener">View on Amazon</a>
+        </div>
+
+        <!-- HP Ink -->
+        <div class="card">
+          <img src="https://m.media-amazon.com/images/I/71ZQUvb4+NL._AC_SL550_.jpg" alt="HP 63 Tri‑Color Original Ink Cartridge">
           <h3>HP 63 Tri‑Color Original Ink</h3>
-          <p>Genuine HP ink for crisp text &amp; vibrant photos—up to 165 pages yield.</p>
-          <a class="btn"
-             href="https://www.amazon.ca/HP-Original-Cartridge-N9K02AN-140/dp/B01BYKUI9C?th=1&linkCode=ll1&tag=sharmelapicks-20&linkId=959008f7996267b0b15344f848a4f144&language=en_CA&ref_=as_li_ss_tl"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
+          <p>Crisp text &amp; vibrant photos—up to 165 pages per cartridge.</p>
+          <a class="btn" href="https://www.amazon.ca/HP-Original-Cartridge-N9K02AN-140/dp/B01BYKUI9C?tag=sharmelapicks-20" target="_blank" rel="noopener">View on Amazon</a>
         </div>
-        <!-- === Product placeholder #1 === -->
+
+        <!-- Blank card #1 -->
         <div class="card">
           <img src="IMAGE_URL" alt="PRODUCT NAME">
           <h3>PRODUCT NAME</h3>
           <p>One‑sentence benefit or key spec goes here.</p>
-          <a class="btn"
-             href="AFFILIATE_LINK"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
+          <a class="btn" href="AFFILIATE_LINK" target="_blank" rel="noopener">View on Amazon</a>
         </div>
 
-<!-- === Product placeholder #2 === -->
+        <!-- Blank card #2 -->
         <div class="card">
           <img src="IMAGE_URL" alt="PRODUCT NAME">
           <h3>PRODUCT NAME</h3>
           <p>One‑sentence benefit or key spec goes here.</p>
-          <a class="btn"
-             href="AFFILIATE_LINK"
-             target="_blank"
-             rel="noopener">View on Amazon</a>
+          <a class="btn" href="AFFILIATE_LINK" target="_blank" rel="noopener">View on Amazon</a>
         </div>
-
+      </div>
     </section>
 
-    <!-- Articles -->
+    <!-- ARTICLES -->
     <section id="guides">
       <h2>Buying Guides &amp; Articles</h2>
 
       <article>
         <h3>How to Choose the Perfect Mechanical Keyboard</h3>
-        <p>If you’re looking for a satisfying typing experience, you’ll love the
-           <a href="https://www.amazon.ca/dp/MECHKEY?tag=YOURTAG-20" target="_blank" rel="noopener">Keychron K6 Wireless</a>.
-           We break down switch types, layouts, and firmware tips.</p>
+        <p>If you’re after a satisfying typing experience, check the
+           <a href="https://www.amazon.ca/dp/MECHKEY?tag=sharmelapicks-20" target="_blank" rel="noopener">Keychron K6 Wireless</a>.
+           We break down switch types, sizes, and firmware tips.</p>
       </article>
 
       <article>
         <h3>Top 5 Budget Action Cameras in 2025</h3>
-        <p>Want GoPro‑level footage without the price tag? Check out the
-           <a href="https://www.amazon.ca/dp/BUDGETCAM?tag=YOURTAG-20" target="_blank" rel="noopener">Akaso Brave 8</a> plus four other wallet‑friendly options.</p>
+        <p>GoPro‑level footage without the price tag—see the
+           <a href="https://www.amazon.ca/dp/BUDGETCAM?tag=sharmelapicks-20" target="_blank" rel="noopener">Akaso Brave 8</a> plus four wallet‑friendly picks.</p>
       </article>
     </section>
   </main>
 
-  <footer>
-    <p>&copy; 2025 Sharmela. All rights reserved.</p>
-  </footer>
+  <footer>&copy; 2025 Sharmela. All rights reserved.</footer>
 
-  <!-- Redirect script: Amazon opens in new tab, current tab → thank‑you page -->
+  <!-- Redirect script: Amazon in new tab, thank‑you page in current tab -->
   <script>
-    document.querySelectorAll('.btn').forEach(link => {
-      link.addEventListener('click', event => {
-        // open Amazon link in new tab
-        window.open(link.href, '_blank', 'noopener');
-        // navigate current tab to thank‑you page
-        window.location.href = 'thankyou.html';
-        // prevent the browser from following link in current tab
-        event.preventDefault();
+    document.querySelectorAll('.btn').forEach(btn=>{
+      btn.addEventListener('click',e=>{
+        window.open(btn.href,'_blank','noopener');
+        window.location.href='thankyou.html';
+        e.preventDefault();
       });
     });
   </script>
 </body>
 </html>
+
