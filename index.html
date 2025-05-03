@@ -52,7 +52,10 @@
     /* Snap the hero into side‑by‑side mode on screens ≥ 900 px */
     @media(min-width:900px){
       #hero{flex-direction:row;justify-content:center;text-align:left;}
-      #hero img{margin:0 2.5rem 0 0;}     /* push text 40 px away from logo */
+      /* shift logo upward 60 px, still keep the 2.5 rem right gap */
+      #hero img{
+        margin:-60px 2.5rem 0 0;   /*  ⬅︎ tweak the -60px until it lines up perfectly */
+      }
       .hero-copy{max-width:500px;}        /* keeps text column tidy        */
     }
 
