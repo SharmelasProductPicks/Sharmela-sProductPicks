@@ -32,6 +32,14 @@
     /* scroll cue */
     #scroll-down{position:absolute;bottom:40px;left:50%;translate:-50% 0;cursor:pointer;width:32px;height:32px;
                  animation:bounce 2s infinite;fill:#fff;opacity:.9;}
+    
+    /* Snap the hero into side‑by‑side mode on screens ≥ 900 px */
+    @media(min-width:900px){
+      #hero{flex-direction:row;justify-content:center;text-align:left;}
+      #hero img{margin:0 2.5rem 0 0;}     /* push text 40 px away from logo */
+      .hero-copy{max-width:500px;}        /* keeps text column tidy        */
+    }
+
 
     /* --- MAIN / CARDS --- */
     main{padding:2rem;max-width:1000px;margin-inline:auto;}
@@ -65,16 +73,22 @@
 </head>
 <body>
 
-  <!-- HERO / WELCOME -->
-  <section id="hero">
-    <img src="logo.png" alt="Sharmela's Picks logo">
+<!-- HERO / WELCOME -->
+<section id="hero">
+  <img src="logo.png" alt="Sharmela's Picks logo">
+
+  <div class="hero-copy">
     <h1>Welcome to Sharmela's Picks</h1>
     <p>Curated Amazon tech &amp; lifestyle deals—hand‑picked so you shop smarter and save bigger.</p>
-    <!-- chevron icon -->
-    <svg id="scroll-down" viewBox="0 0 24 24" onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'});">
-      <path d="M12 16.5 4.5 9l1.42-1.42L12 13.66l6.08-6.08L19.5 9z"/>
-    </svg>
-  </section>
+  </div>
+
+  <!-- chevron icon -->
+  <svg id="scroll-down" viewBox="0 0 24 24"
+       onclick="document.getElementById('featured').scrollIntoView({behavior:'smooth'});">
+    <path d="M12 16.5 4.5 9l1.42-1.42L12 13.66l6.08-6.08L19.5 9z"/>
+  </svg>
+</section>
+
 
   <!-- MAIN CONTENT -->
   <main>
