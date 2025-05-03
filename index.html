@@ -26,11 +26,15 @@
       color:#fff;position:relative;overflow:hidden;padding:2rem;
     }
     #hero img{width:760px;height:760px;margin-bottom:1.5rem;opacity:0;animation:pop .9s .1s forwards;}
-    #hero h1{font-size:2.75rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.5px;opacity:0;animation:slideFade 1.1s .3s forwards;}
+    #hero h1{font-size:2.75rem;font-weight:700;margin-bottom:0.35rem;letter-spacing:-.25px;opacity:0;animation:slideFade 1.1s .3s forwards;}
     #hero p{font-size:1.125rem;max-width:520px;margin-inline:auto 2rem;opacity:0;animation:slideFade 1.1s .45s forwards;}
+    
+    .hero-copy{
+      margin-top:-60px;   /* pull text closer to the logo */
+    }
 
     /* scroll cue */
-    #scroll-down{position:absolute;bottom:40px;left:50%;translate:-50% 0;cursor:pointer;width:32px;height:32px;
+    #scroll-down{bottom:40px;z-index:2;position:absolute;bottom:40px;left:50%;translate:-50% 0;cursor:pointer;width:32px;height:32px;
                  animation:bounce 2s infinite;fill:#fff;opacity:.9;}
     
     /* Snap the hero into side‑by‑side mode on screens ≥ 900 px */
